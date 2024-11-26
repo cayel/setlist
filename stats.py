@@ -25,3 +25,13 @@ else:
     # Display chart
     st.subheader('Concerts per month')
     st.bar_chart(concerts_per_month, use_container_width=True)
+
+    # Calculate the number of events per venue
+    venues = df['venue.name'].value_counts()
+    # Add a line other for all the venue with less than 5 events
+    venues['Other'] = venues[venues < 5].sum()
+    venues = venues[venues >= 5]
+    # Display chart
+    st.subheader('Number of events per venue')
+    st.dataframe(venues, use_container_width=True)
+
