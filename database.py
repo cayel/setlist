@@ -83,7 +83,7 @@ def load_all_events():
     else:
         df = pd.read_csv(get_data_file_path())
         # convert eventDate to datetime
-        df['eventDate'] = pd.to_datetime(df['eventDate'])
+        df['eventDate'] = pd.to_datetime(df['eventDate'],dayfirst=True)
         return df
     
 def save_all_events(df):
