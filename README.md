@@ -14,7 +14,7 @@ Cette application permet de suivre les événements musicaux auxquels vous avez 
 
 1. Clonez le dépôt :
     ```sh
-    git clone <URL_DU_DEPOT>
+    git clone https://github.com/cayel/setlist.git
     cd setlist
     ```
 
