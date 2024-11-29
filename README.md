@@ -39,3 +39,11 @@ Cette application permet de suivre les événements musicaux auxquels vous avez 
 Pour lancer l'application, exécutez la commande suivante :
 ```sh
 streamlit run app.py
+```
+
+## Tests unitaires
+
+Pour lancer les tests unitaires, exécutez la commande suivante :
+```sh
+python3 -m unittest discover -s tests
+```

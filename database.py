@@ -2,6 +2,7 @@ import sqlite3
 import os
 import pandas as pd
 from dotenv import load_dotenv
+from venue import Venue
 
 class AttendedEvent:
     def __init__(self, userId, eventId):
@@ -12,19 +13,6 @@ class AttendedEvent:
         return {
             'userId': self.userId,
             'eventId': self.eventId
-        }
-    
-class Venue:
-    def __init__(self, id, name, cityId):
-        self.id = id
-        self.name = name
-        self.cityId = cityId
-
-    def to_dict(self):
-        return {
-            'id': self.id,
-            'name': self.name,
-            'cityId': self.city
         }
     
 class Artist:
