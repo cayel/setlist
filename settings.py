@@ -1,5 +1,5 @@
 import streamlit as st
-from database import insert_user, is_table_users_exists, create_table_users, get_user_name
+from users.users_db import get_user_name, is_table_users_exists, insert_user, create_table_users
 from setlist_api import get_user_info
 
 st.title('Settings')

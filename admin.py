@@ -2,7 +2,7 @@ import streamlit as st
 from setlist_api import get_attended_events
 import pandas as pd
 import time
-from database import save_all_events
+from database import save_all_events_to_sqlite
 
 st.title('Administration')
 
@@ -28,7 +28,6 @@ with st.expander('Refresh the database',icon=':material/refresh:'):
                 time.sleep(0.5)
             else:
                 break
-        
-        save_all_events(df)
+        save_all_events_to_sqlite(df)
         st.write('Data saved in your database.')
         my_bar.empty()

@@ -1,15 +1,18 @@
 import streamlit as st
-from database import get_user_name, load_all_events
 from setlist_api import get_user_info
 import pandas as pd
 from pandas.tseries.offsets import MonthEnd
+from events.events_db import load_attended_events
+from users.users_db import get_user_name
 
 def get_count_events_for_year(df, year):
+    df['eventDate'] = pd.to_datetime(df['eventDate'])
     # Filter events for the given year
     df_year = df[df['eventDate'].dt.year == year]
     return len(df_year)
 
 def get_count_events_for_month(df, year, month):
+    df['eventDate'] = pd.to_datetime(df['eventDate'])
     # Filter events for the given year and month
     df_month = df[(df['eventDate'].dt.year == year) & (df['eventDate'].dt.month == month)]
     return len(df_month)
@@ -21,7 +24,7 @@ user_name = get_user_name()
 if user_name:
     user_info = get_user_info(user_name)
     st.write(user_info['url'])
-    df = load_all_events()
+    df = load_attended_events(user_name)
     if df.empty:
         st.warning('No event found in the database.', icon=':material/warning:')
         st.write('You can refresh the database in the administration page.')
@@ -44,7 +47,7 @@ if user_name:
             st.metric(label="Events this month", value=number_of_events_current_month, delta=number_of_events_current_month-number_of_events_previous_month)
         st.header('Last 10 events')
         # Display the last 10 events : date, artist, venue
-        df_last_10 = df[['eventDate', 'artist.name', 'venue.name']].head(10)
+        df_last_10 = df[['eventDate', 'artists.name', 'venues.name']].head(10)
         # Display the date in a human readable format
         df_last_10['eventDate'] = df_last_10['eventDate'].dt.strftime('%d/%m/%Y')
         st.dataframe(df_last_10, use_container_width=True)
