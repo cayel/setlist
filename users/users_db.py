@@ -39,6 +39,9 @@ def is_table_users_exists():
 
 def get_user_name():
     db_path = get_database_path()
+    if db_path is None:
+        return None
+
     db_dir = os.path.dirname(db_path)
     
     if not os.path.exists(db_dir):
